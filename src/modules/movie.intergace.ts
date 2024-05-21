@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 
 export type TReview = {
   email: string;
@@ -16,3 +16,10 @@ export type TMovie = {
   reviews: TReview[];
   slug: string;
 };
+
+
+ export type TMovieMethods = {
+  createSlug(paylood : TMovie): string;
+};
+
+export type MovieModel = Model<TMovie, Record<string,unknown>, TMovieMethods>;

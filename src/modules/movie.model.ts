@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema, model } from "mongoose";
-import { TMovie } from "./movie.intergace";
+import { MovieModel, TMovie, TMovieMethods } from "./movie.intergace";
 import { format } from "date-fns";
 import slugify from "slugify";
 
@@ -21,7 +21,7 @@ const reviewsSchema = new Schema({
     }
   });
 
-const movieSchema = new Schema<TMovie, MovieModel, TMovieMethods>({
+const movieSchema = new Schema<TMovie,MovieModel,TMovieMethods>({
     title: {
       type: String,
       required: true
@@ -59,10 +59,9 @@ const movieSchema = new Schema<TMovie, MovieModel, TMovieMethods>({
   //   next()
   // });
 
-   type TMovieMethods = {
-    createSlug(): string;
-  };
+  movieSchema.method('createSlug', function createSlug(paylood) {
+      const date = format(paylood.releaseDate, "dd-mm-yyyy");
+       const slug = slugify(`${paylood.title}-${date}`, {lower:true});
+  });
   
-  type MovieModel = Model<TMovie, Record<string,unknown>, TMovieMethods>;
-
    export const Movie = model<TMovie>('Movie', movieSchema);
