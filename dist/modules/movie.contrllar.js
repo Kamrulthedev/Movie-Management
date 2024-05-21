@@ -14,7 +14,7 @@ const movie_service_1 = require("./movie.service");
 const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const Moviedata = req.body;
-        const result = movie_service_1.MovieService.createMovie(Moviedata);
+        const result = yield movie_service_1.MovieService.createMovie(Moviedata);
         res.status(200).json({
             success: true,
             message: "Movie created successfully!",
@@ -29,6 +29,43 @@ const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
+const getMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield movie_service_1.MovieService.gatMovie();
+        res.status(200).json({
+            success: true,
+            message: "Movies fetched successfully!",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Somting was Worng Data",
+            error: err,
+        });
+    }
+});
+const getSingleMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { MovieId } = req.params;
+        const result = yield movie_service_1.MovieService.getSingleMovie(MovieId);
+        res.status(200).json({
+            success: true,
+            message: "Single Movie Get is Successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Somting was Worng Movie",
+            error: err,
+        });
+    }
+});
 exports.MovieContrllar = {
     createMovieDb,
+    getMovieDb,
+    getSingleMovieDb,
 };

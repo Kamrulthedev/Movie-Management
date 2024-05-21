@@ -3,8 +3,8 @@ import { MovieService } from "./movie.service";
 
 const createMovieDb = async (req: Request, res: Response) => {
   try {
-    const Moviedata  = req.body;
-    const result = MovieService.createMovie(Moviedata);
+    const Moviedata = req.body;
+    const result = await MovieService.createMovie(Moviedata);
     res.status(200).json({
       success: true,
       message: "Movie created successfully!",
@@ -19,6 +19,43 @@ const createMovieDb = async (req: Request, res: Response) => {
   }
 };
 
+const getMovieDb = async (req: Request, res: Response) => {
+  try {
+    const result = await MovieService.gatMovie();
+    res.status(200).json({
+      success: true,
+      message: "Movies fetched successfully!",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: "Somting was Worng Data",
+      error: err,
+    });
+  }
+};
+
+const getSingleMovieDb = async (req: Request, res: Response) => {
+  try {
+    const { MovieId } = req.params;
+    const result = await MovieService.getSingleMovie(MovieId);
+    res.status(200).json({
+      success: true,
+      message: "Single Movie Get is Successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(500).json({
+      success: false,
+      message: "Somting was Worng Movie",
+      error: err,
+    });
+  }
+};
+
 export const MovieContrllar = {
   createMovieDb,
+  getMovieDb,
+  getSingleMovieDb,
 };

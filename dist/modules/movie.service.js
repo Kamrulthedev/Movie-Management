@@ -15,6 +15,16 @@ const createMovie = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield movie_model_1.Movie.create(data);
     return result;
 });
+const gatMovie = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield movie_model_1.Movie.find();
+    return result;
+});
+const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const movie = yield movie_model_1.Movie.findById(id);
+    return movie;
+});
 exports.MovieService = {
     createMovie,
+    gatMovie,
+    getSingleMovie
 };
