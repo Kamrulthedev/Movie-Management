@@ -10,7 +10,6 @@ export default [
         ...globals.browser,
         process: "readonly",
       },
-      
     },
     rules: {
       "no-unused-vars": "error",
@@ -20,7 +19,9 @@ export default [
       "no-undef": "error",
     },
   },
+  {
+    ignores: ["**/node_modules", "**/dist/"],
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
 ];
- 
