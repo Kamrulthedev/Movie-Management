@@ -4,7 +4,6 @@ import { Movie } from "./movie.model";
 const router = express.Router()
 
 router.post('/', async(req:Request, res:Response)=>{
-
    try{
     const result = await Movie.create(req.body)
    res.status(200).json({
