@@ -75,7 +75,11 @@ const getMovieBySlugDb = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     catch (err) {
-        console.log(err);
+        res.status(200).json({
+            success: false,
+            message: "slug create was worng data",
+            data: err
+        });
     }
 });
 exports.MovieContrllar = {

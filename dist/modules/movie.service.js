@@ -16,10 +16,11 @@ exports.MovieService = void 0;
 const date_fns_1 = require("date-fns");
 const movie_model_1 = require("./movie.model");
 const slugify_1 = __importDefault(require("slugify"));
-const createMovie = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const dataM = (0, date_fns_1.format)(data.releaseDate, "dd-MM-yyyy");
-    const slug = (0, slugify_1.default)(`${data.title}-${dataM}`);
-    const result = yield movie_model_1.Movie.create(Object.assign(Object.assign({}, data), { slug }));
+const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* () {
+    const date = (0, date_fns_1.format)(MovieData.releaseDate, "dd-MM-yyyy");
+    const slug = (0, slugify_1.default)(`${MovieData.title}-${date}`, { lower: true });
+    console.log(slug);
+    const result = yield movie_model_1.Movie.create(Object.assign(Object.assign({}, MovieData), { slug }));
     return result;
 });
 const gatMovie = () => __awaiter(void 0, void 0, void 0, function* () {

@@ -7,8 +7,8 @@ router.post("/", MovieContrllar.createMovieDb);
 
 router.get("/", MovieContrllar.getMovieDb);
 
-router.get("/:MovieId", MovieContrllar.getSingleMovieDb);
-
 router.get("/:slug", MovieContrllar.getMovieBySlugDb);
+
+router.get("/:MovieId", MovieContrllar.getSingleMovieDb);
 
 export const MovieRouter = router;

@@ -64,7 +64,11 @@ const getMovieBySlugDb = async (req:Request, res:Response) =>{
       data:result
     })
   }catch(err){
-    console.log(err)
+    res.status(200).json({
+      success:false,
+      message:"slug create was worng data",
+      data:err
+    })
   }
 };
 

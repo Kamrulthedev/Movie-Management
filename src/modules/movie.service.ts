@@ -1,12 +1,14 @@
 import { format } from "date-fns";
 import { TMovie } from "./movie.intergace";
 import { Movie } from "./movie.model";
-import slugify from 'slugify';
+import slugify from "slugify";
 
-const createMovie = async (data: TMovie) => {
-  const dataM = format(data.releaseDate, "dd-MM-yyyy");
-  const slug = slugify(`${data.title}-${dataM}`);
-  const result = await Movie.create({...data, slug});
+const createMovie = async (MovieData: TMovie) => {
+  const date = format(MovieData.releaseDate, "dd-MM-yyyy");
+  const slug = slugify(`${MovieData.title}-${date}` , { lower: true });
+  console.log(slug);
+  const result = await Movie.create({ ...MovieData, slug });
+
   return result;
 };
 

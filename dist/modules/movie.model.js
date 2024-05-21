@@ -47,6 +47,7 @@ const movieSchema = new mongoose_1.Schema({
         default: 0,
         min: 0
     },
-    reviews: [reviewsSchema]
+    reviews: [reviewsSchema],
+    slug: { type: String, required: true, unique: true }
 });
 exports.Movie = (0, mongoose_1.model)('Movie', movieSchema);
