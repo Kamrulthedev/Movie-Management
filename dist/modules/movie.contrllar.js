@@ -8,31 +8,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MovieRouter = void 0;
-const express_1 = __importDefault(require("express"));
-const movie_model_1 = require("./movie.model");
-const movie_contrllar_1 = require("./movie.contrllar");
-const router = express_1.default.Router();
-router.post("/", movie_contrllar_1.MovieContrllar.createMovieDb);
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.MovieContrllar = void 0;
+const movie_service_1 = require("./movie.service");
+const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield movie_model_1.Movie.find();
+        const { data: Moviedata } = req.body;
+        const result = movie_service_1.MovieService.createMovie(Moviedata);
         res.status(200).json({
             success: true,
-            message: "Movies fetched successfully!",
+            message: "Movie created successfully!",
             data: result,
         });
     }
     catch (err) {
         res.status(500).json({
             success: false,
-            message: "Somting was Worng Data",
-            error: err
+            message: "Somting Was wrong Movie",
+            error: err,
         });
     }
-}));
-exports.MovieRouter = router;
+});
+exports.MovieContrllar = {
+    createMovieDb,
+};
