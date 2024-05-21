@@ -24,7 +24,7 @@ const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {
     return movie;
 });
 const getMovieBySlug = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const slug = yield movie_model_1.Movie.findOne({ id });
+    const slug = yield movie_model_1.Movie.findOne({ slug });
     return slug;
 });
 exports.MovieService = {

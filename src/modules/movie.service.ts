@@ -18,7 +18,7 @@ const getSingleMovie = async (id: string) => {
 };
 
 const getMovieBySlug = async (id: string) => {
-  const slug = await Movie.findOne({id});
+  const slug = await Movie.findOne({slug});
   return slug;
 };
 
