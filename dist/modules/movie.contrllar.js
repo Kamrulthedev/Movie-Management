@@ -13,7 +13,7 @@ exports.MovieContrllar = void 0;
 const movie_service_1 = require("./movie.service");
 const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { data: Moviedata } = req.body;
+        const Moviedata = req.body;
         const result = movie_service_1.MovieService.createMovie(Moviedata);
         res.status(200).json({
             success: true,

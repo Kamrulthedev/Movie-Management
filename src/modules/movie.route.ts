@@ -21,5 +21,5 @@ router.get("/", async (req: Request, res: Response) => {
     });
   }
 });
-const result = 
+
 export const MovieRouter = router;

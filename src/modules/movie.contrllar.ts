@@ -3,7 +3,7 @@ import { MovieService } from "./movie.service";
 
 const createMovieDb = async (req: Request, res: Response) => {
   try {
-    const {data: Moviedata } = req.body;
+    const Moviedata  = req.body;
     const result = MovieService.createMovie(Moviedata);
     res.status(200).json({
       success: true,

@@ -16,5 +16,5 @@ const createMovie = (data) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 exports.MovieService = {
-    createMovie
+    createMovie,
 };
