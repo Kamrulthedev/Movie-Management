@@ -1,19 +1,17 @@
 import mongoose from "mongoose";
 
+export type TReview = {
+  email: string;
+  rating: number;
+  comment: string;
+};
 
-export type Review = {
-    email: string;
-    rating: number;
-    comment: string;
-  };
-  
-
-export type Movie = {
-    title: string;
-    description: string;
-    releaseDate: string;
-    genre: string;
-    isDeleted: boolean;
-    viewCount: number;
-    reviews: Review[];
+export type TMovie = {
+  title: string;
+  description: string;
+  releaseDate: string;
+  genre: string;
+  isDeleted: boolean;
+  viewCount: number;
+  reviews: TReview[];
 };
