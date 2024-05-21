@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { TMovie } from "./movie.intergace";
 
 const reviewsSchema = new Schema({
@@ -50,5 +50,4 @@ const movieSchema = new Schema<TMovie>({
     reviews: [reviewsSchema]
   });
   
-
-  const Movie: Model<TMovie> = mongoose.model<TMovie>('Movie', movieSchema);
+   export const Movie = model<TMovie>('Movie', movieSchema);
