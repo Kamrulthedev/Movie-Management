@@ -23,8 +23,13 @@ const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const movie = yield movie_model_1.Movie.findById(id);
     return movie;
 });
+const getMovieBySlug = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const slug = yield movie_model_1.Movie.findOne({ id });
+    return slug;
+});
 exports.MovieService = {
     createMovie,
     gatMovie,
-    getSingleMovie
+    getSingleMovie,
+    getMovieBySlug
 };

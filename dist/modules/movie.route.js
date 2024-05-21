@@ -10,4 +10,5 @@ const router = express_1.default.Router();
 router.post("/", movie_contrllar_1.MovieContrllar.createMovieDb);
 router.get("/", movie_contrllar_1.MovieContrllar.getMovieDb);
 router.get("/:MovieId", movie_contrllar_1.MovieContrllar.getSingleMovieDb);
+router.get("/:slug", movie_contrllar_1.MovieContrllar.getMovieBySlugDb);
 exports.MovieRouter = router;

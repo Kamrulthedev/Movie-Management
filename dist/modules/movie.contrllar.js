@@ -64,8 +64,23 @@ const getSingleMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
+const getMovieBySlugDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { slug } = req.params;
+        const result = yield movie_service_1.MovieService.getMovieBySlug(slug);
+        res.status(200).json({
+            success: true,
+            message: "slug created successfully",
+            data: result
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 exports.MovieContrllar = {
     createMovieDb,
     getMovieDb,
     getSingleMovieDb,
+    getMovieBySlugDb
 };
