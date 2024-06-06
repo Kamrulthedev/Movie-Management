@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { MovieService } from "./movie.service";
 
+
 const createMovieDb = async (req: Request, res: Response) => {
   try {
     const Moviedata = req.body;

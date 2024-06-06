@@ -1,5 +1,4 @@
-import express, { Request, Response } from "express";
-import { Movie } from "./movie.model";
+import express from "express";
 import { MovieContrllar } from "./movie.contrllar";
 
 const router = express.Router();

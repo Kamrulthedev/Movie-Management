@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
-const movie_route_1 = require("./modules/movie.route");
+const movie_route_1 = require("./modules/Movies/movie.route");
 const app = (0, express_1.default)();
 app.use((0, express_1.json)());
 app.use('/api/movies', movie_route_1.MovieRouter);
