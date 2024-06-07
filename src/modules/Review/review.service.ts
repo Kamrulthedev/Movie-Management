@@ -35,7 +35,25 @@ const addReview = async (slug: string, reviewData: Partial<TReview>) => {
 };
 
 //get all reviews
+const GetAllReviewsBySlug = async(slug:string)=>{
+   try{
+    const movie =await Movie.findOne({slug});
+
+    if(!movie){
+      throw new Error("Movie is not Found")
+    }
+    const reviews = await Review.find({ movie: movie._id }).populate('movie', 'title')
+    return reviews
+
+  }catch(err:any){
+    throw new Error(`Unable to retrieve reviews: ${err.message}`)
+
+  }
+};
+
+
 
 export const ReviewServices = {
   addReview,
+  GetAllReviewsBySlug
 };

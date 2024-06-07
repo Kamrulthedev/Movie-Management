@@ -39,6 +39,20 @@ const addReview = (slug, reviewData) => __awaiter(void 0, void 0, void 0, functi
     session.endSession();
 });
 //get all reviews
+const GetAllReviewsBySlug = (slug) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const movie = yield movie_model_1.Movie.findOne({ slug });
+        if (!movie) {
+            throw new Error("Movie is not Found");
+        }
+        const reviews = yield review_model_1.Review.find({ movie: movie._id }).populate('movie', 'title');
+        return reviews;
+    }
+    catch (err) {
+        throw new Error(`Unable to retrieve reviews: ${err.message}`);
+    }
+});
 exports.ReviewServices = {
     addReview,
+    GetAllReviewsBySlug
 };

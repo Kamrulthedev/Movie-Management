@@ -13,4 +13,6 @@ router.get("/:MovieId", MovieContrllar.getSingleMovieDb);
 
 router.post("/:slug/review", ReviewControllers.addReviewDb);
 
+router.get("/:slug/reviews", ReviewControllers.GetAllReviewsBySlugDb);
+
 export const MovieRouter = router;

@@ -22,22 +22,15 @@ const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(v
         data: result,
     });
 }));
-// const getReviewDb = async (req: Request, res: Response) => {
-//   try {
-//     const result = await ReviewService.gatReview();
-//     res.status(200).json({
-//       success: true,
-//       message: "Reviews fetched successfully!",
-//       data: result,
-//     });
-//   } catch (err: any) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Somting was Worng Data",
-//       error: err,
-//     });
-//   }
-// };
+const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { slug } = req.params;
+    const result = yield review_service_1.ReviewServices.GetAllReviewsBySlug(slug);
+    res.json({
+        success: true,
+        message: "Reviews get by specific Movie successfully!",
+        data: result,
+    });
+}));
 // const getSingleReviewDb = async (req: Request, res: Response) => {
 //   try {
 //     const { ReviewId } = req.params;
@@ -73,5 +66,6 @@ const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(v
 //   }
 // };
 exports.ReviewControllers = {
-    addReviewDb
+    addReviewDb,
+    GetAllReviewsBySlugDb
 };
