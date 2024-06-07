@@ -7,53 +7,37 @@ exports.Movie = void 0;
 const mongoose_1 = require("mongoose");
 const date_fns_1 = require("date-fns");
 const slugify_1 = __importDefault(require("slugify"));
-const reviewsSchema = new mongoose_1.Schema({
-    email: {
-        type: String,
-        required: true,
-        match: /.+\@.+\..+/
-    },
-    rating: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 5
-    },
-    comment: {
-        type: String,
-        required: true
-    }
-});
 const movieSchema = new mongoose_1.Schema({
     title: {
         type: String,
-        required: true
+        required: [true, "Title is required"],
     },
     description: {
         type: String,
-        required: true
+        required: [true, "Description is required"],
     },
     releaseDate: {
-        type: String,
-        required: true
+        type: Date,
     },
     genre: {
         type: String,
-        required: true
+        required: [true, "Genre is required"],
+    },
+    slug: {
+        type: String,
     },
     isDeleted: {
         type: Boolean,
-        required: true,
-        default: false
+        default: false,
     },
     viewCount: {
         type: Number,
-        required: true,
         default: 0,
-        min: 0
     },
-    reviews: [reviewsSchema],
-    slug: { type: String, required: true, unique: true }
+    totalRating: {
+        type: Number,
+        default: 0,
+    },
 });
 // movieSchema.pre('save', async function(next){
 //   const date = format(this.releaseDate, "dd-MM-yyyy");
