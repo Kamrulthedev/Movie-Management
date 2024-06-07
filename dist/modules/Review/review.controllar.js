@@ -40,25 +40,18 @@ const GetByReviewIdDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __await
         data: result,
     });
 }));
-// const getReviewBySlugDb = async (req:Request, res:Response) =>{
-//   try{
-//     const {slug} = req.params;
-//     const result = await ReviewService.getReviewBySlug(slug);
-//     res.status(200).json({
-//       success:true,
-//       message:"get slug by review successfully",
-//       data:result
-//     })
-//   }catch(err){
-//     res.status(200).json({
-//       success:false,
-//       message:"slug create was worng data",
-//       data:err
-//     })
-//   }
-// };
+const deleteReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield review_service_1.ReviewServices.DeleteReviewById(id);
+    res.json({
+        success: true,
+        message: "Delete review successfully",
+        data: result,
+    });
+}));
 exports.ReviewControllers = {
     addReviewDb,
     GetAllReviewsBySlugDb,
-    GetByReviewIdDb
+    GetByReviewIdDb,
+    deleteReviewDb
 };

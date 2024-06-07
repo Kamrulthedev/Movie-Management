@@ -35,26 +35,19 @@ const GetByReviewIdDb = catchAsync(async (req, res, next) => {
   });
 });
 
-// const getReviewBySlugDb = async (req:Request, res:Response) =>{
-//   try{
-//     const {slug} = req.params;
-//     const result = await ReviewService.getReviewBySlug(slug);
-//     res.status(200).json({
-//       success:true,
-//       message:"get slug by review successfully",
-//       data:result
-//     })
-//   }catch(err){
-//     res.status(200).json({
-//       success:false,
-//       message:"slug create was worng data",
-//       data:err
-//     })
-//   }
-// };
+const deleteReviewDb = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const result = await ReviewServices.DeleteReviewById(id);
+  res.json({
+    success: true,
+    message: "Delete review successfully",
+    data: result,
+  });
+});
 
 export const ReviewControllers = {
   addReviewDb,
   GetAllReviewsBySlugDb,
-  GetByReviewIdDb
+  GetByReviewIdDb,
+  deleteReviewDb
 };
