@@ -61,7 +61,7 @@ const getMovieBySlugDb = async (req:Request, res:Response) =>{
     const result = await MovieService.getMovieBySlug(slug);
     res.status(200).json({
       success:true,
-      message:"slug created successfully",
+      message:"get slug by movie successfully",
       data:result
     })
   }catch(err){

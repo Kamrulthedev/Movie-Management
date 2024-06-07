@@ -70,7 +70,7 @@ const getMovieBySlugDb = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const result = yield movie_service_1.MovieService.getMovieBySlug(slug);
         res.status(200).json({
             success: true,
-            message: "slug created successfully",
+            message: "get slug by movie successfully",
             data: result
         });
     }
