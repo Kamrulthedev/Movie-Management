@@ -10,16 +10,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewControllers = void 0;
-const addReview = catchAsync((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const review_service_1 = require("./review.service");
+const addReviewDb = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { slug } = req.params;
     const reviewData = req.body;
-    const result = yield ReviewServices.addReview(slug, reviewData);
+    const result = yield review_service_1.ReviewServices.addReview(slug, reviewData);
     res.json({
         success: true,
         message: 'Review is created successfully!',
         data: result,
     });
-}));
+});
 // const getReviewDb = async (req: Request, res: Response) => {
 //   try {
 //     const result = await ReviewService.gatReview();
@@ -71,5 +72,5 @@ const addReview = catchAsync((req, res, next) => __awaiter(void 0, void 0, void 
 //   }
 // };
 exports.ReviewControllers = {
-    addReview
+    addReviewDb
 };

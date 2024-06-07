@@ -12,5 +12,5 @@ router.post("/", movie_contrllar_1.MovieContrllar.createMovieDb);
 router.get("/", movie_contrllar_1.MovieContrllar.getMovieDb);
 router.get("/:slug", movie_contrllar_1.MovieContrllar.getMovieBySlugDb);
 router.get("/:MovieId", movie_contrllar_1.MovieContrllar.getSingleMovieDb);
-router.post("/:slug/review", review_controllar_1.ReviewControllers.addReview);
+router.post("/:slug/review", review_controllar_1.ReviewControllers.addReviewDb);
 exports.MovieRouter = router;
