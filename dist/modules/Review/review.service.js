@@ -40,13 +40,18 @@ const addReview = (slug, reviewData) => __awaiter(void 0, void 0, void 0, functi
     session.endSession();
 });
 //get all reviews
-const GetAllReviewsBySlug = (slug) => __awaiter(void 0, void 0, void 0, function* () {
+const GetAllReviewsBySlug = (slug, rating) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const movie = yield movie_model_1.Movie.findOne({ slug });
         if (!movie) {
             throw new Error("Movie is not Found");
         }
-        const reviews = yield review_model_1.Review.find({ movie: movie._id }).populate("movie", "title");
+        const filter = { movie: movie._id };
+        if (rating) {
+            filter.rating = rating;
+        }
+        ;
+        const reviews = yield review_model_1.Review.find(filter).sort({ rating: -1 }).populate("movie", "title");
         return reviews;
     }
     catch (err) {
@@ -66,7 +71,7 @@ const GetByReviewId = (id) => __awaiter(void 0, void 0, void 0, function* () {
         throw new Error(`Unable to retrieve the review: ${err.message}`);
     }
 });
-//delete 
+//delete
 const DeleteReviewById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(id);
     const session = yield review_model_1.Review.startSession();
@@ -80,7 +85,7 @@ const DeleteReviewById = (id) => __awaiter(void 0, void 0, void 0, function* () 
         const deleteCound = yield review_model_1.Review.countDocuments({ movie: movieId }).session(session);
         yield movie_model_1.Movie.updateOne({ _id: id }, { totalRating: deleteCound }, { session });
         yield session.commitTransaction();
-        return { message: 'Review deleted successfully' };
+        return { message: "Review deleted successfully" };
     }
     catch (err) {
         console.log(err);
@@ -92,5 +97,5 @@ exports.ReviewServices = {
     addReview,
     GetAllReviewsBySlug,
     GetByReviewId,
-    DeleteReviewById
+    DeleteReviewById,
 };

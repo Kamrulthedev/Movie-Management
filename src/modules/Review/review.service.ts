@@ -36,14 +36,22 @@ const addReview = async (slug: string, reviewData: Partial<TReview>) => {
 };
 
 //get all reviews
-const GetAllReviewsBySlug = async (slug: string) => {
+const GetAllReviewsBySlug = async (slug: string, rating?: number) => {
   try {
     const movie = await Movie.findOne({ slug });
 
     if (!movie) {
       throw new Error("Movie is not Found");
     }
-    const reviews = await Review.find({ movie: movie._id }).populate(
+
+
+    const filter : any ={movie:movie._id};
+    if(rating){
+      filter.rating = rating;
+    };
+    
+  
+    const reviews = await Review.find(filter).sort({rating : -1}).populate(
       "movie",
       "title"
     );
@@ -66,9 +74,9 @@ const GetByReviewId = async (id: string) => {
   }
 };
 
-//delete 
+//delete
 const DeleteReviewById = async (id: string) => {
-  console.log(id)
+  console.log(id);
   const session = await Review.startSession();
   try {
     const review = await Review.findById(id).session(session);
@@ -86,9 +94,9 @@ const DeleteReviewById = async (id: string) => {
       { session }
     );
     await session.commitTransaction();
-    return { message: 'Review deleted successfully' };
+    return { message: "Review deleted successfully" };
   } catch (err: any) {
-    console.log(err)
+    console.log(err);
     await session.abortTransaction();
     await session.endSession();
   }
@@ -98,5 +106,5 @@ export const ReviewServices = {
   addReview,
   GetAllReviewsBySlug,
   GetByReviewId,
-  DeleteReviewById
+  DeleteReviewById,
 };

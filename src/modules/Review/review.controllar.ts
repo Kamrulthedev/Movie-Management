@@ -17,7 +17,12 @@ const addReviewDb = catchAsync(
 
 const GetAllReviewsBySlugDb = catchAsync(async (req, res, next) => {
   const { slug } = req.params;
-  const result = await ReviewServices.GetAllReviewsBySlug(slug);
+  const {rating} = req.query;
+
+  //ratin == Number
+  const ratinNumber = rating ? Number(rating) : undefined;
+
+  const result = await ReviewServices.GetAllReviewsBySlug(slug, ratinNumber);
   res.json({
     success: true,
     message: "Reviews get by specific Movie successfully!",

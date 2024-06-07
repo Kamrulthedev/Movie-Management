@@ -24,7 +24,10 @@ const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(v
 }));
 const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { slug } = req.params;
-    const result = yield review_service_1.ReviewServices.GetAllReviewsBySlug(slug);
+    const { rating } = req.query;
+    //ratin == Number
+    const ratinNumber = rating ? Number(rating) : undefined;
+    const result = yield review_service_1.ReviewServices.GetAllReviewsBySlug(slug, ratinNumber);
     res.json({
         success: true,
         message: "Reviews get by specific Movie successfully!",
