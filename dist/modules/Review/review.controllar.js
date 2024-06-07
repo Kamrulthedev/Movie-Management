@@ -18,11 +18,11 @@ const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(v
     const result = yield review_service_1.ReviewServices.addReview(slug, reviewData);
     res.json({
         success: true,
-        message: 'Review is created successfully!',
+        message: "Review is created successfully!",
         data: result,
     });
 }));
-const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { slug } = req.params;
     const result = yield review_service_1.ReviewServices.GetAllReviewsBySlug(slug);
     res.json({
@@ -31,23 +31,15 @@ const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res) => __await
         data: result,
     });
 }));
-// const getSingleReviewDb = async (req: Request, res: Response) => {
-//   try {
-//     const { ReviewId } = req.params;
-//     const result = await ReviewService.getSingleReview(ReviewId);
-//     res.status(200).json({
-//       success: true,
-//       message: "Single Review Get is Successfully",
-//       data: result,
-//     });
-//   } catch (err: any) {
-//     res.status(500).json({
-//       success: false,
-//       message: "Somting was Worng Review",
-//       error: err,
-//     });
-//   }
-// };
+const GetByReviewIdDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const result = yield review_service_1.ReviewServices.GetByReviewId(id);
+    res.json({
+        success: true,
+        message: "Single Review Get is Successfully",
+        data: result,
+    });
+}));
 // const getReviewBySlugDb = async (req:Request, res:Response) =>{
 //   try{
 //     const {slug} = req.params;
@@ -67,5 +59,6 @@ const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res) => __await
 // };
 exports.ReviewControllers = {
     addReviewDb,
-    GetAllReviewsBySlugDb
+    GetAllReviewsBySlugDb,
+    GetByReviewIdDb
 };

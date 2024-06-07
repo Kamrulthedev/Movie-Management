@@ -2,6 +2,7 @@ import { Movie } from "../Movies/movie.model";
 import { TReview } from "./review.interface";
 import { Review } from "./review.model";
 
+//add Reviews
 const addReview = async (slug: string, reviewData: Partial<TReview>) => {
   const session = await Movie.startSession();
   const movie = await Movie.findOne({ slug });
@@ -51,9 +52,22 @@ const GetAllReviewsBySlug = async(slug:string)=>{
   }
 };
 
-
+//get by id specific Reviews
+const GetByReviewId = async(id:string) =>{
+  try{
+    const review = await Review.findById(id)
+    if(!review){
+      throw new Error("Reviews Not Found !")
+    }
+    return review
+  }catch(err:any){
+    throw new Error(`Unable to retrieve the review: ${err.message}`);
+    
+  }
+}
 
 export const ReviewServices = {
   addReview,
-  GetAllReviewsBySlug
+  GetAllReviewsBySlug,
+  GetByReviewId
 };

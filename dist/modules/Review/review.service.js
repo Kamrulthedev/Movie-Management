@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewServices = void 0;
 const movie_model_1 = require("../Movies/movie.model");
 const review_model_1 = require("./review.model");
+//add Reviews
 const addReview = (slug, reviewData) => __awaiter(void 0, void 0, void 0, function* () {
     const session = yield movie_model_1.Movie.startSession();
     const movie = yield movie_model_1.Movie.findOne({ slug });
@@ -52,7 +53,21 @@ const GetAllReviewsBySlug = (slug) => __awaiter(void 0, void 0, void 0, function
         throw new Error(`Unable to retrieve reviews: ${err.message}`);
     }
 });
+//get by id specific Reviews
+const GetByReviewId = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const review = yield review_model_1.Review.findById(id);
+        if (!review) {
+            throw new Error("Reviews Not Found !");
+        }
+        return review;
+    }
+    catch (err) {
+        throw new Error(`Unable to retrieve the review: ${err.message}`);
+    }
+});
 exports.ReviewServices = {
     addReview,
-    GetAllReviewsBySlug
+    GetAllReviewsBySlug,
+    GetByReviewId
 };
