@@ -38,6 +38,7 @@ const addReview = (slug, reviewData) => __awaiter(void 0, void 0, void 0, functi
     }
     session.endSession();
 });
+//get all reviews
 exports.ReviewServices = {
     addReview,
 };

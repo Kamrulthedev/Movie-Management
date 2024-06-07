@@ -1,21 +1,19 @@
 import { NextFunction, Request, Response } from "express";
 import { ReviewServices } from "./review.service";
+import { catchAsync } from "../Utils/CatchAsync";
 
 
 
-const addReviewDb = async (req: Request, res: Response, next: NextFunction) => {
-    const { slug } = req.params;
-    const reviewData = req.body;
-    const result = await ReviewServices.addReview(slug, reviewData);
-    res.json({
-      success: true,
-      message: 'Review is created successfully!',
-      data: result,
-    });
-  };
-
-
-
+const addReviewDb = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const { slug } = req.params;
+  const reviewData = req.body;
+  const result = await ReviewServices.addReview(slug, reviewData);
+  res.json({
+    success: true,
+    message: 'Review is created successfully!',
+    data: result,
+  });
+});
 
 
 // const getReviewDb = async (req: Request, res: Response) => {
@@ -34,6 +32,7 @@ const addReviewDb = async (req: Request, res: Response, next: NextFunction) => {
 //     });
 //   }
 // };
+
 
 // const getSingleReviewDb = async (req: Request, res: Response) => {
 //   try {
