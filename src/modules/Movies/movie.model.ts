@@ -1,57 +1,41 @@
 import mongoose, { Model, Schema, model } from "mongoose";
-import { MovieModel, TMovie, TMovieMethods } from "./movie.intergace";
+import {TMovie, TMovieMethods, TMovieModel } from "./movie.intergace";
 import { format } from "date-fns";
 import slugify from "slugify";
 
-const reviewsSchema = new Schema({
-    email: {
-        type: String,
-        required: true,
-        match: /.+\@.+\..+/
-    },
-    rating: {
-      type: Number,
-      required: true,
-      min: 1,
-      max: 5
-    },
-    comment: {
-      type: String,
-      required: true
-    }
-  });
 
-const movieSchema = new Schema<TMovie,MovieModel,TMovieMethods>({
-    title: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    releaseDate: {
-      type: String,
-      required: true
-    },
-    genre: {
-      type: String,
-      required: true
-    },
-    isDeleted: {
-      type: Boolean,
-      required: true,
-      default: false
-    },
-    viewCount: {
-      type: Number,
-      required: true,
-      default: 0,
-      min: 0
-    },
-    reviews: [reviewsSchema],
-    slug: {type: String, required: true, unique:true}
-  });
+const movieSchema = new Schema<TMovie, TMovieModel, TMovieMethods>({
+  title: {
+    type: String,
+    required: [true, "Title is required"],
+  },
+  description: {
+    type: String,
+    required: [true, "Description is required"],
+  },
+  releaseDate: {
+    type: Date,
+  },
+  genre: {
+    type: String,
+    required: [true, "Genre is required"],
+  },
+  slug: {
+    type: String,
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
+  viewCount: {
+    type: Number,
+    default: 0,
+  },
+  totalRating: {
+    type: Number,
+    default: 0,
+  },
+});
   
   // movieSchema.pre('save', async function(next){
   //   const date = format(this.releaseDate, "dd-MM-yyyy");

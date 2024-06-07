@@ -1,20 +1,15 @@
 import mongoose, { Model } from "mongoose";
 
-export type TReview = {
-  email: string;
-  rating: number;
-  comment: string;
-};
 
 export type TMovie = {
   title: string;
   description: string;
-  releaseDate: string;
+  releaseDate: Date;
   genre: string;
-  isDeleted: boolean;
-  viewCount: number;
-  reviews: TReview[];
   slug: string;
+  viewCount: number;
+  totalRating: number;
+  isDeleted?: boolean;
 };
 
 
@@ -22,4 +17,4 @@ export type TMovie = {
   createSlug(paylood : TMovie): string;
 };
 
-export type MovieModel = Model<TMovie, Record<string,unknown>, TMovieMethods>;
+export type TMovieModel = Model<TMovie, Record<string,unknown>, TMovieMethods>;
