@@ -10,6 +10,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let statusCode = 500;
+    let message = "Someting Went Wrong !";
+    const ErrorSourse = {
+        path: "",
+        message: "Someting Went Wrong"
+    };
     res.status(500).json({
         success: false,
         message: "Someting Went Wrong !!",
