@@ -8,7 +8,6 @@ const createMovie = async (MovieData: TMovie) => {
   const slug = slugify(`${MovieData.title}-${date}` , { lower: true });
   console.log(slug);
   const result = await Movie.create({ ...MovieData, slug });
-
   return result;
 };
 
