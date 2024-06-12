@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const hendleValidationError_1 = __importDefault(require("../errors/hendleValidationError"));
 const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let statusCode = 500;
     let message = "Someting Went Wrong !";
@@ -16,7 +20,8 @@ const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, vo
         path: "",
         message: "Someting Went Wrong"
     };
-    if (err.ValidationError) {
+    if (err.name === "ValidationError") {
+        const simlipitError = (0, hendleValidationError_1.default)(err);
     }
     ;
     res.status(500).json({

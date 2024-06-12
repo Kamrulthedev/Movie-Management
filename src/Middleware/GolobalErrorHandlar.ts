@@ -1,5 +1,6 @@
 import { ErrorRequestHandler } from "express";
 import { TErrorSourse } from "../interface/Error.interface";
+import hendleValidationError from "../errors/hendleValidationError";
 
 const golobalErrorhandlar: ErrorRequestHandler = async (err, eq, res, next) => {
   let statusCode = 500;
@@ -9,8 +10,8 @@ const golobalErrorhandlar: ErrorRequestHandler = async (err, eq, res, next) => {
     path:"",
     message:"Someting Went Wrong"
   };
-  if(err.ValidationError){
-           
+  if(err.name === "ValidationError"){
+     const simlipitError = hendleValidationError(err)    
   };
 
   res.status(500).json({
