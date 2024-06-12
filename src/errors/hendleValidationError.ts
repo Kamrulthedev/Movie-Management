@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
+import { TErrorSourse } from "../interface/Error.interface";
 
 const hendleValidationError = (err: mongoose.Error.ValidationError) => {
-  const ErrorSourse = Object.values(err.errors).map(
+  const ErrorSourse:TErrorSourse = Object.values(err.errors).map(
     (val: mongoose.Error.ValidatorError | mongoose.Error.CastError) => {
       return {
         path: val.path,
@@ -9,6 +10,10 @@ const hendleValidationError = (err: mongoose.Error.ValidationError) => {
       };
     }
   );
+  return {
+    path: "Validation Error",
+    ErrorSourse,
+  };
 };
 
 export default hendleValidationError;

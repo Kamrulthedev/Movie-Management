@@ -16,18 +16,21 @@ const hendleValidationError_1 = __importDefault(require("../errors/hendleValidat
 const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let statusCode = 500;
     let message = "Someting Went Wrong !";
-    const ErrorSourse = {
-        path: "",
-        message: "Someting Went Wrong"
-    };
+    let ErrorSourse = [
+        {
+            path: "",
+            message: "Someting Went Wrong",
+        },
+    ];
     if (err.name === "ValidationError") {
         const simlipitError = (0, hendleValidationError_1.default)(err);
+        ErrorSourse = simlipitError.ErrorSourse;
+        console.log(simlipitError);
     }
-    ;
     res.status(500).json({
         success: false,
-        message: "Someting Went Wrong !!",
-        err,
+        message: err.name,
+        ErrorSourse,
     });
 });
 exports.default = golobalErrorhandlar;
