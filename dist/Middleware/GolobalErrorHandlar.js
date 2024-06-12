@@ -14,14 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const hendleValidationError_1 = __importDefault(require("../errors/hendleValidationError"));
 const CastError_1 = __importDefault(require("../errors/CastError"));
+const DoplicaiteError_1 = __importDefault(require("../errors/DoplicaiteError"));
 const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let statusCode = 500;
     let message = "Someting Went Wrong !";
     let ErrorSourse = [
-    // {
-    //   path: "",
-    //   message: "Someting Went Wrong",
-    // },
+        {
+            path: "",
+            message: "Someting Went Wrong",
+        },
     ];
     if (err.name === "ValidationError") {
         const simlipitError = (0, hendleValidationError_1.default)(err);
@@ -30,11 +31,14 @@ const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, vo
     else if (err.name == "CastError") {
         const simlipitError = (0, CastError_1.default)(err);
         ErrorSourse = simlipitError.ErrorSourse;
-        console.log(simlipitError);
+    }
+    else if (err.code == 11000) {
+        const simlipitError = (0, DoplicaiteError_1.default)(err);
+        ErrorSourse = simlipitError.ErrorSourse;
     }
     res.status(500).json({
         success: false,
-        message: err.name,
+        message,
         ErrorSourse,
     });
 });
