@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { MovieService } from "./movie.service";
 
 
-const createMovieDb = async (req: Request, res: Response) => {
+const createMovieDb = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const Moviedata = req.body;
     const result = await MovieService.createMovie(Moviedata);
@@ -12,11 +12,7 @@ const createMovieDb = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err: any) {
-    res.status(500).json({
-      success: false,
-      message: "Somting Was wrong Movie",
-      error: err,
-    });
+    next(err)
   }
 };
 

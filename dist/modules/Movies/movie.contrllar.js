@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MovieContrllar = void 0;
 const movie_service_1 = require("./movie.service");
-const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createMovieDb = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const Moviedata = req.body;
         const result = yield movie_service_1.MovieService.createMovie(Moviedata);
@@ -22,11 +22,7 @@ const createMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
     catch (err) {
-        res.status(500).json({
-            success: false,
-            message: "Somting Was wrong Movie",
-            error: err,
-        });
+        next(err);
     }
 });
 const getMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

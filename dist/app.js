@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const movie_route_1 = require("./modules/Movies/movie.route");
 const NotFound_1 = __importDefault(require("./Middleware/NotFound"));
+const GolobalErrorHandlar_1 = __importDefault(require("./Middleware/GolobalErrorHandlar"));
 const app = (0, express_1.default)();
 app.use((0, express_1.json)());
 app.use('/api/movies', movie_route_1.MovieRouter);
@@ -36,4 +37,5 @@ app.get('/', (req, res) => {
     res.send('Hello Next!');
 });
 app.use(NotFound_1.default);
+app.use(GolobalErrorHandlar_1.default);
 exports.default = app;
