@@ -19,7 +19,6 @@ const slugify_1 = __importDefault(require("slugify"));
 const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* () {
     const date = (0, date_fns_1.format)(MovieData.releaseDate, "dd-MM-yyyy");
     const slug = (0, slugify_1.default)(`${MovieData.title}-${date}`, { lower: true });
-    console.log(slug);
     const result = yield movie_model_1.Movie.create(Object.assign(Object.assign({}, MovieData), { slug }));
     return result;
 });
