@@ -9,6 +9,9 @@ const golobalErrorhandlar: ErrorRequestHandler = async (err, eq, res, next) => {
     path:"",
     message:"Someting Went Wrong"
   };
+  if(err.ValidationError){
+           
+  };
 
   res.status(500).json({
     success: false,

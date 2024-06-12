@@ -16,6 +16,9 @@ const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, vo
         path: "",
         message: "Someting Went Wrong"
     };
+    if (err.ValidationError) {
+    }
+    ;
     res.status(500).json({
         success: false,
         message: "Someting Went Wrong !!",
