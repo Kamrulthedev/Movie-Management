@@ -39,11 +39,6 @@ const movieSchema = new mongoose_1.Schema({
         default: 0,
     },
 });
-// movieSchema.pre('save', async function(next){
-//   const date = format(this.releaseDate, "dd-MM-yyyy");
-//   this.slug = slugify(`${this.title}-${date}` , { lower: true });
-//   next()
-// });
 movieSchema.method('createSlug', function createSlug(paylood) {
     const date = (0, date_fns_1.format)(paylood.releaseDate, "dd-mm-yyyy");
     const slug = (0, slugify_1.default)(`${paylood.title}-${date}`, { lower: true });

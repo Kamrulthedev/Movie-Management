@@ -1,9 +1,11 @@
 import express from "express";
 import { MovieContrllar } from "./movie.contrllar";
 import { ReviewControllers } from "../Review/review.controllar";
+import { movieValidation } from "./movie.validation";
+import validationRequest from "../../Middleware/validaedRequest";
 
 const router = express.Router();
-router.post("/", MovieContrllar.createMovieDb);
+router.post("/",validationRequest(movieValidation.createmovieSchema), MovieContrllar.createMovieDb);
 
 router.get("/", MovieContrllar.getMovieDb);
 

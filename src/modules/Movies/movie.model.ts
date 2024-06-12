@@ -37,11 +37,6 @@ const movieSchema = new Schema<TMovie, TMovieModel, TMovieMethods>({
   },
 });
   
-  // movieSchema.pre('save', async function(next){
-  //   const date = format(this.releaseDate, "dd-MM-yyyy");
-  //   this.slug = slugify(`${this.title}-${date}` , { lower: true });
-  //   next()
-  // });
 
   movieSchema.method('createSlug', function createSlug(paylood) {
       const date = format(paylood.releaseDate, "dd-mm-yyyy");
