@@ -15,6 +15,10 @@ const createAdminIntoDB = (payload) => __awaiter(void 0, void 0, void 0, functio
     const admin = yield user_model_1.User.create(payload);
     return admin;
 });
+const getAllUser = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.User.find();
+    return result;
+});
 const updateUser = (_id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const admin = yield user_model_1.User.findByIdAndUpdate({ _id }, payload);
     return admin;
@@ -22,4 +26,5 @@ const updateUser = (_id, payload) => __awaiter(void 0, void 0, void 0, function*
 exports.UserServices = {
     createAdminIntoDB,
     updateUser,
+    getAllUser
 };

@@ -23,8 +23,21 @@ const createAdmin = catchAsync(async (req, res) => {
       data: result,
     });
   });
+
+  const getAllUserDb = catchAsync(async (req, res) => {
+    const result = await UserServices.getAllUser();
+    res.status(200).json({
+      success: true,
+      message: "User Retrived successfully!",
+      data: result,
+    });
+  });
+
+
+
   
   export const userControllers = {
     createAdmin,
     updateUser,
+    getAllUserDb
   };

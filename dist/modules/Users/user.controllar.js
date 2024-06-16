@@ -29,7 +29,16 @@ const updateUser = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, 
         data: result,
     });
 }));
+const getAllUserDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_service_1.UserServices.getAllUser();
+    res.status(200).json({
+        success: true,
+        message: "User Retrived successfully!",
+        data: result,
+    });
+}));
 exports.userControllers = {
     createAdmin,
     updateUser,
+    getAllUserDb
 };

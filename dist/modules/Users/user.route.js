@@ -11,4 +11,5 @@ const validaedRequest_1 = __importDefault(require("../../Middleware/validaedRequ
 const router = express_1.default.Router();
 router.post("/create-admin", (0, validaedRequest_1.default)(user_validation_1.UserValidations.createAdminValidations), user_controllar_1.userControllers.createAdmin);
 router.put("/:userId", (0, validaedRequest_1.default)(user_validation_1.UserValidations.updateUserValidations), user_controllar_1.userControllers.updateUser);
+router.get('/', user_controllar_1.userControllers.getAllUserDb);
 exports.UserRoutes = router;

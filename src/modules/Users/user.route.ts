@@ -17,4 +17,7 @@ router.put(
   userControllers.updateUser
 );
 
+router.get('/', userControllers.getAllUserDb)
+
+
 export const UserRoutes = router;
