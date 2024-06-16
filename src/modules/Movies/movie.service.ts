@@ -2,6 +2,8 @@ import { format } from "date-fns";
 import { TMovie } from "./movie.intergace";
 import { Movie } from "./movie.model";
 import slugify from "slugify";
+import { QueryBuilder } from "../../Builder/QueryBuilder";
+import { MovieSearchableFields } from "./movie.constant";
 
 const createMovie = async (MovieData: TMovie) => {
   const date = format(MovieData.releaseDate, "dd-MM-yyyy");
@@ -12,8 +14,13 @@ const createMovie = async (MovieData: TMovie) => {
 
 //get all movie
 const gatMovie = async (payload: Record<string, unknown>) => {
-  const searchedMovie = await Movie.find();
-  return searchedMovie;
+  const movieQuery = new QueryBuilder(Movie.find({}), payload)
+    .filter()
+    .search(MovieSearchableFields)
+    .fields()
+    .paginate()
+    .sort();
+  return movieQuery;
 };
 
 //get single movie

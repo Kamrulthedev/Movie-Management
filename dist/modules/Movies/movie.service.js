@@ -16,6 +16,8 @@ exports.MovieService = void 0;
 const date_fns_1 = require("date-fns");
 const movie_model_1 = require("./movie.model");
 const slugify_1 = __importDefault(require("slugify"));
+const QueryBuilder_1 = require("../../Builder/QueryBuilder");
+const movie_constant_1 = require("./movie.constant");
 const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* () {
     const date = (0, date_fns_1.format)(MovieData.releaseDate, "dd-MM-yyyy");
     const slug = (0, slugify_1.default)(`${MovieData.title}-${date}`, { lower: true });
@@ -24,8 +26,13 @@ const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* (
 });
 //get all movie
 const gatMovie = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const searchedMovie = yield movie_model_1.Movie.find();
-    return searchedMovie;
+    const movieQuery = new QueryBuilder_1.QueryBuilder(movie_model_1.Movie.find({}), payload)
+        .filter()
+        .search(movie_constant_1.MovieSearchableFields)
+        .fields()
+        .paginate()
+        .sort();
+    return movieQuery;
 });
 //get single movie
 const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {
