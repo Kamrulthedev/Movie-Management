@@ -32,7 +32,8 @@ const gatMovie = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         .fields()
         .paginate()
         .sort();
-    return movieQuery;
+    const results = yield movieQuery.modelQuery;
+    return results;
 });
 //get single movie
 const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {

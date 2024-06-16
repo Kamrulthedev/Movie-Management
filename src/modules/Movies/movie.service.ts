@@ -15,12 +15,14 @@ const createMovie = async (MovieData: TMovie) => {
 //get all movie
 const gatMovie = async (payload: Record<string, unknown>) => {
   const movieQuery = new QueryBuilder(Movie.find({}), payload)
-    .filter()
-    .search(MovieSearchableFields)
-    .fields()
-    .paginate()
-    .sort();
-  return movieQuery;
+    .filter()   
+    .search(MovieSearchableFields) 
+    .fields()       
+    .paginate()      
+    .sort();         
+
+  const results = await movieQuery.modelQuery;
+  return results;
 };
 
 //get single movie
