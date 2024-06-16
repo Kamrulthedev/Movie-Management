@@ -24,34 +24,7 @@ const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* (
 });
 //get all movie
 const gatMovie = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    // Search fields
-    let searchTerm = "";
-    if (payload === null || payload === void 0 ? void 0 : payload.searchTerm) {
-        searchTerm = payload.searchTerm;
-    }
-    const searchableFields = ["title", "genre"];
-    const searchQuery = {
-        $or: searchableFields.map((field) => ({
-            [field]: { $regex: searchTerm, $options: "i" },
-        })),
-    };
-    //paginattion
-    let limit = Number((payload === null || payload === void 0 ? void 0 : payload.limit) || 10);
-    let skip = 0;
-    if (payload === null || payload === void 0 ? void 0 : payload.page) {
-        const page = Number((payload === null || payload === void 0 ? void 0 : payload.page) || 1);
-        skip = Number((page - 1) * limit);
-    }
-    const skipQuiery = searchQuery.skip(skip);
-    const limitQuiery = skipQuiery.limit(limit);
-    // Copy from payload object
-    const queryObj = Object.assign({}, payload);
-    const excludeFields = ["searchTerm"];
-    excludeFields.forEach((e) => delete queryObj[e]);
-    const finalQuery = {
-        $and: [searchQuery, queryObj],
-    };
-    const searchedMovie = yield movie_model_1.Movie.find(finalQuery);
+    const searchedMovie = yield movie_model_1.Movie.find();
     return searchedMovie;
 });
 //get single movie
