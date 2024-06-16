@@ -12,22 +12,40 @@ const createMovie = async (MovieData: TMovie) => {
 
 //get all movie
 const gatMovie = async (payload: Record<string, unknown>) => {
+  // Search fields
   let searchTerm = "";
-  
   if (payload?.searchTerm) {
     searchTerm = payload.searchTerm as string;
   }
-  
   const searchableFields = ["title", "genre"];
-  
   const searchQuery = {
     $or: searchableFields.map((field) => ({
       [field]: { $regex: searchTerm, $options: "i" },
     })),
   };
-  
-  const searchedMovie = await Movie.find(searchQuery);
-  
+
+  //paginattion
+  let limit: number = Number(payload?.limit || 10);
+  let skip: number = 0;
+
+  if (payload?.page) {
+    const page: number = Number(payload?.page || 1);
+    skip = Number((page - 1) * limit);
+  }
+
+  const skipQuiery =  searchQuery.skip(skip)
+
+  const limitQuiery = skipQuiery.limit(limit)
+
+  // Copy from payload object
+  const queryObj = { ...payload };
+  const excludeFields = ["searchTerm"];
+  excludeFields.forEach((e) => delete queryObj[e]);
+  const finalQuery = {
+    $and: [searchQuery, queryObj],
+  };
+
+  const searchedMovie = await Movie.find(finalQuery);
   return searchedMovie;
 };
 
@@ -42,7 +60,6 @@ const getMovieBySlug = async (slug: string) => {
   const slugD = await Movie.findOne({ slug: slug });
   return slugD;
 };
-
 
 // exports movie
 export const MovieService = {
