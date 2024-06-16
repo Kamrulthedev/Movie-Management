@@ -27,7 +27,7 @@ const createMovieDb = (req, res, next) => __awaiter(void 0, void 0, void 0, func
 });
 const getMovieDb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield movie_service_1.MovieService.gatMovie();
+        const result = yield movie_service_1.MovieService.gatMovie(req.query);
         res.status(200).json({
             success: true,
             message: "Movies fetched successfully!",

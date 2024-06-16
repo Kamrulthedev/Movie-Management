@@ -18,7 +18,7 @@ const createMovieDb = async (req: Request, res: Response, next:NextFunction) => 
 
 const getMovieDb = async (req: Request, res: Response) => {
   try {
-    const result = await MovieService.gatMovie();
+    const result = await MovieService.gatMovie(req.query);
     res.status(200).json({
       success: true,
       message: "Movies fetched successfully!",

@@ -22,18 +22,32 @@ const createMovie = (MovieData) => __awaiter(void 0, void 0, void 0, function* (
     const result = yield movie_model_1.Movie.create(Object.assign(Object.assign({}, MovieData), { slug }));
     return result;
 });
-const gatMovie = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield movie_model_1.Movie.find();
-    return result;
+//get all movie
+const gatMovie = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    let searchTerm = "";
+    if (payload === null || payload === void 0 ? void 0 : payload.searchTerm) {
+        searchTerm = payload.searchTerm;
+    }
+    const searchableFields = ["title", "genre"];
+    const searchQuery = {
+        $or: searchableFields.map((field) => ({
+            [field]: { $regex: searchTerm, $options: "i" },
+        })),
+    };
+    const searchedMovie = yield movie_model_1.Movie.find(searchQuery);
+    return searchedMovie;
 });
+//get single movie
 const getSingleMovie = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const movie = yield movie_model_1.Movie.findById(id);
     return movie;
 });
+//get by slug movie
 const getMovieBySlug = (slug) => __awaiter(void 0, void 0, void 0, function* () {
     const slugD = yield movie_model_1.Movie.findOne({ slug: slug });
     return slugD;
 });
+// exports movie
 exports.MovieService = {
     createMovie,
     gatMovie,
