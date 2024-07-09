@@ -30,6 +30,7 @@ const register = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const newUser = yield user_model_1.User.create(payload);
     return newUser;
 });
+//login
 const login = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield user_model_1.User.findOne({ email: payload.email }).select("+password");
     if (!user) {

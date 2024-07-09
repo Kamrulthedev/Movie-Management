@@ -73,7 +73,6 @@ const GetByReviewId = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 //delete
 const DeleteReviewById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(id);
     const session = yield review_model_1.Review.startSession();
     try {
         const review = yield review_model_1.Review.findById(id).session(session);

@@ -76,7 +76,6 @@ const GetByReviewId = async (id: string) => {
 
 //delete
 const DeleteReviewById = async (id: string) => {
-  console.log(id);
   const session = await Review.startSession();
   try {
     const review = await Review.findById(id).session(session);

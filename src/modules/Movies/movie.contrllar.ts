@@ -1,4 +1,3 @@
-import { NextFunction, Request, Response } from "express";
 import { MovieService } from "./movie.service";
 import { catchAsync } from "../Utils/CatchAsync";
 

@@ -12,20 +12,20 @@ import config from "../../config";
 const register = async (payload: TUser): Promise<any> => {
     //user existence check
     const user = await User.findOne({ email: payload.email });
-  
     if (user) {
       throw new Error("User already exists");
     }
-  
     //set user role
     payload.role = USER_Role.USER;
-  
     //create user
     const newUser = await User.create(payload);
-  
     return newUser;
   };
-  
+
+
+
+
+  //login
   const login = async (payload: TLoginUser) => {
     const user = await User.findOne({ email: payload.email }).select("+password");
   

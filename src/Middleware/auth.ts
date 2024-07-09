@@ -35,7 +35,7 @@ export const auth = (...requiredRoles: (keyof typeof USER_Role)[]) => {
       if (!requiredRoles.includes(role)) {
         throw new Error("You are not authorized to access this route");
       }
-  
+   
       next();
     });
   };
