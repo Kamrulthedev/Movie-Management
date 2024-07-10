@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema, model } from "mongoose";
+import {  Schema, model } from "mongoose";
 import {TMovie, TMovieMethods, TMovieModel } from "./movie.intergace";
 import { format } from "date-fns";
 import slugify from "slugify";
@@ -34,6 +34,10 @@ const movieSchema = new Schema<TMovie, TMovieModel, TMovieMethods>({
   totalRating: {
     type: Number,
     default: 0,
+  },
+  image: {
+    type: String,
+    required: [true, "image is required"],
   },
 });
   

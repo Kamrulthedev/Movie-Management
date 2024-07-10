@@ -1,4 +1,4 @@
-import mongoose, { Model } from "mongoose";
+import  { Model } from "mongoose";
 
 
 export type TMovie = {
@@ -10,6 +10,7 @@ export type TMovie = {
   viewCount: number;
   totalRating: number;
   isDeleted?: boolean;
+  image: string;
 };
 
 

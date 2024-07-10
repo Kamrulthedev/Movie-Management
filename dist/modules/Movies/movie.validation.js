@@ -11,6 +11,7 @@ exports.createmovieSchema = zod_1.z.object({
         viewCount: zod_1.z.number().default(0),
         totalRating: zod_1.z.number().default(0),
         isDeleted: zod_1.z.boolean().optional().default(false),
+        image: zod_1.z.string()
     }),
 });
 exports.movieValidation = {

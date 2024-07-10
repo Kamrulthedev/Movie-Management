@@ -38,6 +38,10 @@ const movieSchema = new mongoose_1.Schema({
         type: Number,
         default: 0,
     },
+    image: {
+        type: String,
+        required: [true, "image is required"],
+    },
 });
 movieSchema.method('createSlug', function createSlug(paylood) {
     const date = (0, date_fns_1.format)(paylood.releaseDate, "dd-mm-yyyy");

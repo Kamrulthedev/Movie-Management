@@ -9,6 +9,7 @@ export const createmovieSchema = z.object({
     viewCount: z.number().default(0),
     totalRating: z.number().default(0),
     isDeleted: z.boolean().optional().default(false),
+    image: z.string()
   }),
 });
 
