@@ -30,7 +30,7 @@ export class QueryBuilder<T> {
 
   //paigenate
   paginate() {
-    let limit: number = Number(this.query?.limit || 10);
+    const limit: number = Number(this.query?.limit || 10);
 
     let skip: number = 0;
 

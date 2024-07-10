@@ -4,7 +4,10 @@ import NotFound from "./Middleware/NotFound";
 import golobalErrorhandlar from "./Middleware/GolobalErrorHandlar";
 import { UserRoutes } from "./modules/Users/user.route";
 import { AuthRoutes } from "./modules/Auth/auth.route";
+import cors from "cors";
 const app = express()
+
+app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
 
 app.use(json())
 app.use('/api/movies', MovieRouter)

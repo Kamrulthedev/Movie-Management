@@ -16,8 +16,8 @@ const hendleValidationError_1 = __importDefault(require("../errors/hendleValidat
 const CastError_1 = __importDefault(require("../errors/CastError"));
 const DoplicaiteError_1 = __importDefault(require("../errors/DoplicaiteError"));
 const golobalErrorhandlar = (err, eq, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    let statusCode = 500;
-    let message = "Someting Went Wrong !";
+    const statusCode = 500;
+    const message = "Someting Went Wrong !";
     let ErrorSourse = [
         {
             path: "",

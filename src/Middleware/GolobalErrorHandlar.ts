@@ -5,8 +5,8 @@ import hendleCustError from "../errors/CastError";
 import DoplicateError from "../errors/DoplicaiteError";
 
 const golobalErrorhandlar: ErrorRequestHandler = async (err, eq, res, next) => {
-  let statusCode = 500;
-  let message = "Someting Went Wrong !";
+  const statusCode = 500;
+  const message = "Someting Went Wrong !";
 
   let ErrorSourse: TErrorSourse = [
     {

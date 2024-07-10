@@ -25,7 +25,7 @@ class QueryBuilder {
     //paigenate
     paginate() {
         var _a, _b, _c;
-        let limit = Number(((_a = this.query) === null || _a === void 0 ? void 0 : _a.limit) || 10);
+        const limit = Number(((_a = this.query) === null || _a === void 0 ? void 0 : _a.limit) || 10);
         let skip = 0;
         if ((_b = this.query) === null || _b === void 0 ? void 0 : _b.page) {
             const page = Number(((_c = this.query) === null || _c === void 0 ? void 0 : _c.page) || 1);
