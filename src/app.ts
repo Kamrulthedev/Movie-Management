@@ -5,20 +5,25 @@ import golobalErrorhandlar from "./Middleware/GolobalErrorHandlar";
 import { UserRoutes } from "./modules/Users/user.route";
 import { AuthRoutes } from "./modules/Auth/auth.route";
 import cors from "cors";
-const app = express()
+const app = express();
 
-app.use(cors({ origin: ["http://localhost:5173", "https://c-session.vercel.app"], credentials: true }));
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://c-session.vercel.app", "https://show-time-cinema.vercel.app", "https://showtimecinema.netlify.app" , "*"],
+    credentials: true,
+  })
+);
 
-app.use(json())
-app.use('/api/movies', MovieRouter)
+app.use(json());
+app.use("/api/movies", MovieRouter);
 
-app.use("/api/users", UserRoutes)
+app.use("/api/users", UserRoutes);
 
-app.use("/api/auth", AuthRoutes)
+app.use("/api/auth", AuthRoutes);
 
-app.get('/', (req: Request, res:Response) => {
-  res.send('Hello Next!')
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello Next!");
 });
-app.use(NotFound)
-app.use(golobalErrorhandlar)
+app.use(NotFound);
+app.use(golobalErrorhandlar);
 export default app;

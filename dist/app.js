@@ -34,13 +34,16 @@ const user_route_1 = require("./modules/Users/user.route");
 const auth_route_1 = require("./modules/Auth/auth.route");
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: ["http://localhost:5173", "https://c-session.vercel.app"], credentials: true }));
+app.use((0, cors_1.default)({
+    origin: ["http://localhost:5173", "https://c-session.vercel.app", "https://show-time-cinema.vercel.app", "https://showtimecinema.netlify.app", "*"],
+    credentials: true,
+}));
 app.use((0, express_1.json)());
-app.use('/api/movies', movie_route_1.MovieRouter);
+app.use("/api/movies", movie_route_1.MovieRouter);
 app.use("/api/users", user_route_1.UserRoutes);
 app.use("/api/auth", auth_route_1.AuthRoutes);
-app.get('/', (req, res) => {
-    res.send('Hello Next!');
+app.get("/", (req, res) => {
+    res.send("Hello Next!");
 });
 app.use(NotFound_1.default);
 app.use(GolobalErrorHandlar_1.default);
