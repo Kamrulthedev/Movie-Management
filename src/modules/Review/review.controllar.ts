@@ -1,9 +1,9 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import { ReviewServices } from "./review.service";
 import { catchAsync } from "../Utils/CatchAsync";
 
 const addReviewDb = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response) => {
     const { slug } = req.params;
     const reviewData = req.body;
     const result = await ReviewServices.addReview(slug, reviewData);
@@ -15,7 +15,7 @@ const addReviewDb = catchAsync(
   }
 );
 
-const GetAllReviewsBySlugDb = catchAsync(async (req, res, next) => {
+const GetAllReviewsBySlugDb = catchAsync(async (req, res) => {
   const { slug } = req.params;
   const {rating} = req.query;
 
@@ -30,7 +30,7 @@ const GetAllReviewsBySlugDb = catchAsync(async (req, res, next) => {
   });
 });
 
-const GetByReviewIdDb = catchAsync(async (req, res, next) => {
+const GetByReviewIdDb = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await ReviewServices.GetByReviewId(id);
   res.json({
@@ -40,7 +40,7 @@ const GetByReviewIdDb = catchAsync(async (req, res, next) => {
   });
 });
 
-const deleteReviewDb = catchAsync(async (req, res, next) => {
+const deleteReviewDb = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result = await ReviewServices.DeleteReviewById(id);
   res.json({

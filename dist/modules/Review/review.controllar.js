@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReviewControllers = void 0;
 const review_service_1 = require("./review.service");
 const CatchAsync_1 = require("../Utils/CatchAsync");
-const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { slug } = req.params;
     const reviewData = req.body;
     const result = yield review_service_1.ReviewServices.addReview(slug, reviewData);
@@ -22,7 +22,7 @@ const addReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(v
         data: result,
     });
 }));
-const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { slug } = req.params;
     const { rating } = req.query;
     //ratin == Number
@@ -34,7 +34,7 @@ const GetAllReviewsBySlugDb = (0, CatchAsync_1.catchAsync)((req, res, next) => _
         data: result,
     });
 }));
-const GetByReviewIdDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const GetByReviewIdDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const result = yield review_service_1.ReviewServices.GetByReviewId(id);
     res.json({
@@ -43,7 +43,7 @@ const GetByReviewIdDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __await
         data: result,
     });
 }));
-const deleteReviewDb = (0, CatchAsync_1.catchAsync)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteReviewDb = (0, CatchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const result = yield review_service_1.ReviewServices.DeleteReviewById(id);
     res.json({

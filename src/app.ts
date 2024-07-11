@@ -7,7 +7,7 @@ import { AuthRoutes } from "./modules/Auth/auth.route";
 import cors from "cors";
 const app = express()
 
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173", "https://c-session.vercel.app"], credentials: true }));
 
 app.use(json())
 app.use('/api/movies', MovieRouter)
